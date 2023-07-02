@@ -12,5 +12,25 @@ export class ItemsService {
 
   getAllItems(): Observable<any> {
     return this.http.get(`${this.baseURL}/`)
- }
+  }
+
+  getItemById(id: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/${id}`)
+  }
+
+  createItem(item: any): Observable<any> {
+    return this.http.post(`${this.baseURL}/`, item)
+  }
+
+  updateItem(id: string, item: any): Observable<any> {
+    return this.http.put(`${this.baseURL}/${id}`, item)
+  }
+
+  deleteItem(id: string): Observable<any> {
+    return this.http.delete(`${this.baseURL}/${id}`)
+  }
+
+  searchItemByDescription(description: string): Observable<any> {
+    return this.http.get(`${this.baseURL}/search/${description}`)
+  }
 }
