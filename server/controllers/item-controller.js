@@ -1,7 +1,9 @@
 const { get, put } = require('../routes/itemRoute');
+var path = require('path')
+var databaseLocation = path.join(__dirname, '..',  '..', 'database', 'items.db');
 
 var sqlite3 = require('sqlite3').verbose();
-var db = new sqlite3.Database('./database/items.db');
+var db = new sqlite3.Database(databaseLocation);
 
 var exported = {
     postItem: (req, res) => {
