@@ -25,26 +25,29 @@ export class AppComponent {
       })
   }
 
-  add(description: any, dueDate: any, priority: any){
+  add(description: any, dueDate: any, priority: any) {
     console.log(dueDate);
-    
-    this.itemsService.createItem({description: description, dueDate: dueDate, priority: priority})
+
+    this.itemsService.createItem({ description: description, dueDate: dueDate, priority: priority })
       .subscribe(data => {
         console.log(data)
         this.itemList.push(data)
       })
+    this.description = ''
+    this.dueDate = ''
+    this.priority = ''
   }
 
-  remove(id: string){
+  remove(id: string) {
     this.itemsService.deleteItem(id)
       .subscribe(data => {
         console.log(data)
-        this.itemList = this.itemList.filter(item => item._id !== id)
       })
+    this.itemList = this.itemList.filter(item => item.item_id !== id)
   }
 
-  update(id: string, item: any){
-    this.itemsService.updateItem(id, item)
+  update(id: string, item: any) {
+    this.itemsService.updateItem(id, { description: item.description, dueDate: item.due_date, priority: item.priority })
       .subscribe(data => {
         console.log(data)
         this.itemList = this.itemList.map(item => {
@@ -56,12 +59,12 @@ export class AppComponent {
       })
   }
 
-  checkFields(){
-    if(this.description === '' || this.dueDate === '' || this.priority === ''){
+  checkFields() {
+    if (this.description === '' || this.dueDate === '' || this.priority === '') {
       return true
-    }else{
+    } else {
       return false
     }
-    
+
   }
 }
