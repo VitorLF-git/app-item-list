@@ -11,13 +11,17 @@
     <td>
       <input type="text" [value]="item.description">
     </td>
-    
+
     <td>
-      <input type="text" [value]="item.dueDate">
+      <input type="date" [ngModel]="item.due_date | date:'yyyy-MM-dd'">
     </td>
-    
+
     <td>
-      <input type="text" [value]="item.priority">
+      <select [(ngModel)]="item.priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
     </td>
 
     <td>
@@ -28,19 +32,22 @@
   </tr>
   <tr>
     <td>
-      <input type="text">
+      <input type="text" [(ngModel)]="description">
     </td>
 
     <td>
-      <input type="text">
+      <input type="date" [(ngModel)]="dueDate">
     </td>
 
     <td>
-      <input type="text">
-
+      <select [(ngModel)]="priority">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
     </td>
     <td>
-      <button (click)="add()" [disabled]="checkFields()">+</button>
+      <button (click)="add(description,dueDate,priority)" [disabled]="checkFields()">+</button>
     </td>
 
 

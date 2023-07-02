@@ -9,6 +9,9 @@ import { ItemsService } from './services/items.service';
 export class AppComponent {
   title = 'client';
   itemList: any[] = []
+  description: string = ''
+  dueDate: string = ''
+  priority: string = ''
 
   constructor(
     private itemsService: ItemsService
@@ -22,8 +25,10 @@ export class AppComponent {
       })
   }
 
-  add(){
-    this.itemsService.createItem({description: 'test', price: 123})
+  add(description: any, dueDate: any, priority: any){
+    console.log(dueDate);
+    
+    this.itemsService.createItem({description: description, dueDate: dueDate, priority: priority})
       .subscribe(data => {
         console.log(data)
         this.itemList.push(data)
@@ -52,7 +57,11 @@ export class AppComponent {
   }
 
   checkFields(){
-    console.log('check fields');
+    if(this.description === '' || this.dueDate === '' || this.priority === ''){
+      return true
+    }else{
+      return false
+    }
     
   }
 }
