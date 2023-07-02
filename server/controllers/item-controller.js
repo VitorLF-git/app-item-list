@@ -1,3 +1,4 @@
+const { get } = require('../routes/itemRoute');
 
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./database/items.db');
@@ -54,6 +55,24 @@ var exported = {
             });
         });
 
+    },
+
+    getItemById: (req, res) => {
+        db.serialize(() => {
+            db.get('SELECT * FROM item WHERE item_id = ?', [req.params.id], function (err, row) {
+                if (err) {
+                    console.log(err.message);
+                    res.status(500).send(err.message);
+                }
+                console.log("GET request received at /items");
+                console.log(row);
+                if (row) {
+                    res.json(row);
+                } else {
+                    res.status(404).send(`Item with id ${req.params.id} not found`);
+                }
+            });
+        });
     }
 }
 
