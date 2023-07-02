@@ -1,6 +1,12 @@
 <table id="items">
   <tr>
     <th>Items TO-DO</th>
+    <th>
+      Search: <input type="text" [(ngModel)]="searchText">
+      <button (click)="search()">Ok</button>
+      <button (click)="clearSearch()">Clear</button>
+
+    </th>
   </tr>
   <tr>
     <th>Description</th>

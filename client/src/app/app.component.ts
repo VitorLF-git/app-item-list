@@ -12,7 +12,7 @@ export class AppComponent {
   description: string = ''
   dueDate: string = ''
   priority: string = ''
-
+  searchText: string = ''
   constructor(
     private itemsService: ItemsService
   ) { }
@@ -67,4 +67,23 @@ export class AppComponent {
     }
 
   }
+
+  search() {
+    
+    this.itemsService.searchItemByDescription(this.searchText)
+      .subscribe(data => {
+        console.log(data)
+        this.itemList = data
+      })
+  }
+
+  clearSearch() {
+
+    this.itemsService.getAllItems()
+      .subscribe(data => {
+        console.log(data)
+        this.itemList = data
+      })
+  }
+
 }
