@@ -10,6 +10,9 @@ var server = http.createServer(app);
 var db = new sqlite3.Database('./database/items.db');
 db.run('CREATE TABLE IF NOT EXISTS item(item_id INTEGER PRIMARY KEY, description TEXT, due_date TEXT, priority TEXT)');
 
+const item = require('./routes/item');
+app.use('/items', item);
+
 server.listen(3000,function(){ 
     console.log("Server listening on port: 3000");
 });
