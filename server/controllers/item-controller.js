@@ -20,7 +20,7 @@ var exported = {
 
     getItemsByDescription: (req, res) => {
         db.serialize(() => {
-            db.all('SELECT item_id ID, description DESCRIPTION FROM item WHERE description LIKE ?', [`%${req.params.description}%`], function (err, rows) {
+            db.all('SELECT * FROM item WHERE description LIKE ?', [`%${req.params.description}%`], function (err, rows) {
                 if (err) {
                     console.log(err.message);
                     res.status(500).send(err.message);
@@ -36,6 +36,25 @@ var exported = {
         });
 
     },
+
+    getAllItems: (req, res) => {
+        db.serialize(() => {
+            db.all('SELECT * FROM item', function (err, rows) {
+                if (err) {
+                    console.log(err.message);
+                    res.status(500).send(err.message);
+                }
+                console.log("GET request received at /items");
+                console.log(rows);
+                if (rows.length > 0) {
+                    res.json(rows);
+                } else {
+                    res.status(404).send(`No items found`);
+                }
+            });
+        });
+
+    }
 }
 
 module.exports = exported;
