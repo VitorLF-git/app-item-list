@@ -81,7 +81,7 @@ var exported = {
         console.log("PUT request received at /items");
         console.log(req.body);
         db.serialize(() => {
-            db.run('UPDATE item SET (description, due_date, priority) VALUES(?,?,?) WHERE item_id = ?',  [req.body.description, req.body.dueDate, req.body.priority, req.params.id], function (err) {
+            db.run('UPDATE item SET description=?, due_date=?, priority=? WHERE item_id = ?',  [req.body.description, req.body.dueDate, req.body.priority, req.params.id], function (err) {
                 if (err) {
                     console.log(err.message);
                     res.status(500).send(err.message);
