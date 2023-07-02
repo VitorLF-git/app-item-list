@@ -38,8 +38,8 @@ export class AppComponent {
       })
   }
 
-  update(id: string){
-    this.itemsService.updateItem(id, {description: 'test', price: 123})
+  update(id: string, item: any){
+    this.itemsService.updateItem(id, item)
       .subscribe(data => {
         console.log(data)
         this.itemList = this.itemList.map(item => {

@@ -9,11 +9,21 @@
   </tr>
   <tr *ngFor="let item of itemList">
     <td>
-      <input type="text" value="item.description">
+      <input type="text" [value]="item.description">
     </td>
     
     <td>
-      <button (onclick)="remove(item.id)">Remove</button>
+      <input type="text" [value]="item.dueDate">
+    </td>
+    
+    <td>
+      <input type="text" [value]="item.priority">
+    </td>
+
+    <td>
+      <button (click)="remove(item.item_id)">Remove</button>
+      <button (click)="update(item.item_id, item)">Update</button>
+
     </td>
   </tr>
   <tr>
@@ -30,7 +40,7 @@
 
     </td>
     <td>
-      <button (onclick)="add()" *ngIf="checkFields()">+</button>
+      <button (click)="add()" [disabled]="checkFields()">+</button>
     </td>
 
 

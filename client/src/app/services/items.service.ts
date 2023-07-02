@@ -27,6 +27,8 @@ export class ItemsService {
   }
 
   deleteItem(id: string): Observable<any> {
+    console.log('delete item');
+    
     return this.http.delete(`${this.baseURL}/${id}`)
   }
 
