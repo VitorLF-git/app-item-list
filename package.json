@@ -1,0 +1,15 @@
+{
+  "name": "app-item-list",
+  "version": "1.0.0",
+  "description": "A page that lists TODO items. Each item has a description, a due date and a priority. The items in the page are filterable by description or priority",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vitorlopesfranchi@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "sqlite3": "^5.1.6"
+  }
+}
