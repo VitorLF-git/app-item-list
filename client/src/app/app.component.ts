@@ -8,6 +8,7 @@ import { ItemsService } from './services/items.service';
 })
 export class AppComponent {
   title = 'client';
+  itemList: any[] = []
 
   constructor(
     private itemsService: ItemsService
@@ -17,6 +18,7 @@ export class AppComponent {
     this.itemsService.getAllItems()
       .subscribe(data => {
         console.log(data)
+        this.itemList = data
       })
   }
 }
