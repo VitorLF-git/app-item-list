@@ -21,4 +21,38 @@ export class AppComponent {
         this.itemList = data
       })
   }
+
+  add(){
+    this.itemsService.createItem({description: 'test', price: 123})
+      .subscribe(data => {
+        console.log(data)
+        this.itemList.push(data)
+      })
+  }
+
+  remove(id: string){
+    this.itemsService.deleteItem(id)
+      .subscribe(data => {
+        console.log(data)
+        this.itemList = this.itemList.filter(item => item._id !== id)
+      })
+  }
+
+  update(id: string){
+    this.itemsService.updateItem(id, {description: 'test', price: 123})
+      .subscribe(data => {
+        console.log(data)
+        this.itemList = this.itemList.map(item => {
+          if (item._id === id) {
+            return data
+          }
+          return item
+        })
+      })
+  }
+
+  checkFields(){
+    console.log('check fields');
+    
+  }
 }

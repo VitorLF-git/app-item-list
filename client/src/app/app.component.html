@@ -9,24 +9,30 @@
   </tr>
   <tr *ngFor="let item of itemList">
     <td>
-      {{item.description}}
+      <input type="text" value="item.description">
+    </td>
+    
+    <td>
+      <button (onclick)="remove(item.id)">Remove</button>
     </td>
   </tr>
   <tr>
     <td>
       <input type="text">
     </td>
-    
+
     <td>
       <input type="text">
     </td>
-    
+
     <td>
       <input type="text">
-      
-      <button>+</button>
+
     </td>
-    
-    
+    <td>
+      <button (onclick)="add()" *ngIf="checkFields()">+</button>
+    </td>
+
+
   </tr>
 </table>
