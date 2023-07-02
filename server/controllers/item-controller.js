@@ -1,4 +1,4 @@
-const { get } = require('../routes/itemRoute');
+const { get, put } = require('../routes/itemRoute');
 
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database('./database/items.db');
@@ -71,6 +71,21 @@ var exported = {
                 } else {
                     res.status(404).send(`Item with id ${req.params.id} not found`);
                 }
+            });
+        });
+    },
+
+    putItem: (req, res) => {
+        console.log("PUT request received at /items");
+        console.log(req.body);
+        db.serialize(() => {
+            db.run('UPDATE item SET description = ? WHERE item_id = ?', [req.body.description, req.params.id], function (err) {
+                if (err) {
+                    console.log(err.message);
+                    res.status(500).send(err.message);
+                }
+                console.log("Item has been updated");
+                res.json(req.body);
             });
         });
     }
