@@ -8,5 +8,6 @@ router.get('/search/:description', itemController.getItemsByDescription);
 router.get('/', itemController.getAllItems);
 router.get('/:id', itemController.getItemById);
 router.put('/:id', itemController.putItem);
+router.delete('/:id', itemController.deleteItem);
 
 module.exports = router;

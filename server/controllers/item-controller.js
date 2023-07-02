@@ -88,6 +88,21 @@ var exported = {
                 res.json(req.body);
             });
         });
+    },
+
+    deleteItem: (req, res) => {
+        console.log("DELETE request received at /items");
+        console.log(req.body);
+        db.serialize(() => {
+            db.run('DELETE FROM item WHERE item_id = ?', [req.params.id], function (err) {
+                if (err) {
+                    console.log(err.message);
+                    res.status(500).send(err.message);
+                }
+                console.log("Item has been deleted");
+                res.send(`Item with id ${req.params.id} has been deleted`);
+            });
+        });
     }
 }
 
